@@ -22,7 +22,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginRight="5dp"
                 android:text="@string/key_clear"
-                app:backgroundTint="#FF5722" />
+                app:backgroundTint="#FF5723" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/key_divide" />
+                android:text="@string/key_dividee" />
 
             <Button
                 android:layout_width="wrap_content"
