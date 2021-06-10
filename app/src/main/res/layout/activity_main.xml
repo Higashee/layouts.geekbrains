@@ -39,6 +39,7 @@
         android:text="@string/key_7"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="@dimen/buttons_margin"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@id/button8"
         app:layout_constraintStart_toStartOf="@+id/main_screen"
         app:layout_constraintTop_toBottomOf="@+id/main_screen" />
@@ -50,6 +51,7 @@
         android:text="@string/key_8"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="@dimen/buttons_margin"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@+id/button9"
         app:layout_constraintStart_toEndOf="@id/button7"
         app:layout_constraintTop_toBottomOf="@+id/main_screen" />
@@ -61,6 +63,7 @@
         android:text="@string/key_9"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="@dimen/buttons_margin"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@id/buttonMultiply"
         app:layout_constraintStart_toEndOf="@id/button8"
         app:layout_constraintTop_toBottomOf="@+id/main_screen" />
@@ -72,20 +75,11 @@
         android:text="@string/key_clear"
         android:textSize="@dimen/button_text_size"
         android:layout_marginLeft="@dimen/buttons_margin"
+        android:onClick="clear"
         app:layout_constraintEnd_toEndOf="@id/main_screen"
         app:layout_constraintStart_toEndOf="@id/button9"
         app:layout_constraintTop_toBottomOf="@+id/main_screen"
         android:backgroundTint="@color/color_AC"/>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonC"
-        android:layout_width="60dp"
-        android:layout_height="@dimen/button_height"
-        android:textSize="@dimen/button_text_size"
-        app:icon="?attr/actionModeCloseDrawable"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAC"
-        app:layout_constraintEnd_toEndOf="@id/main_screen"
-        android:backgroundTint="@color/color_C"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button4"
@@ -94,6 +88,7 @@
         android:text="@string/key_4"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="@dimen/buttons_margin"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@id/button5"
         app:layout_constraintStart_toStartOf="@+id/main_screen"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
@@ -105,6 +100,7 @@
         android:text="@string/key_5"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="5dp"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@+id/button6"
         app:layout_constraintStart_toEndOf="@id/button4"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
@@ -116,6 +112,7 @@
         android:text="@string/key_6"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="5dp"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@id/buttonMultiply"
         app:layout_constraintStart_toEndOf="@id/button5"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
@@ -127,6 +124,7 @@
         android:text="@string/key_multiply"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="5dp"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@id/buttonDividee"
         app:layout_constraintStart_toEndOf="@id/button6"
         app:layout_constraintTop_toBottomOf="@+id/button7"
@@ -139,6 +137,7 @@
         android:text="@string/key_dividee"
         android:textSize="@dimen/button_text_size"
         android:backgroundTint="@color/color_actions"
+        android:onClick="press"
         app:layout_constraintEnd_toEndOf="@id/main_screen"
         app:layout_constraintStart_toEndOf="@id/buttonMultiply"
         app:layout_constraintTop_toBottomOf="@+id/button7" />
@@ -150,6 +149,7 @@
         android:text="@string/key_1"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="@dimen/buttons_margin"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@id/button2"
         app:layout_constraintStart_toStartOf="@+id/main_screen"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
@@ -161,6 +161,7 @@
         android:text="@string/key_2"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="@dimen/buttons_margin"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@+id/button3"
         app:layout_constraintStart_toEndOf="@id/button1"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
@@ -172,6 +173,7 @@
         android:text="@string/key_3"
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="@dimen/buttons_margin"
+        android:onClick="press"
         app:layout_constraintEnd_toStartOf="@id/buttonPlus"
         app:layout_constraintStart_toEndOf="@id/button2"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
@@ -184,6 +186,7 @@
         android:textSize="@dimen/button_text_size"
         android:layout_marginRight="@dimen/buttons_margin"
         android:backgroundTint="@color/color_actions"
+        android:onClick="press"
         app:layout_constraintBottom_toBottomOf="@+id/button3"
         app:layout_constraintEnd_toStartOf="@id/buttonMinus"
         app:layout_constraintStart_toEndOf="@id/button3"
@@ -196,6 +199,7 @@
         android:text="@string/key_minus"
         android:textSize="@dimen/button_text_size"
         android:backgroundTint="@color/color_actions"
+        android:onClick="press"
         app:layout_constraintEnd_toEndOf="@id/main_screen"
         app:layout_constraintStart_toEndOf="@id/buttonPlus"
         app:layout_constraintTop_toBottomOf="@+id/button4" />
@@ -208,6 +212,7 @@
         android:textSize="@dimen/button_text_size"
         android:layout_marginLeft="@dimen/buttons_margin"
         android:backgroundTint="@color/color_equal"
+        android:onClick="press"
         app:layout_constraintEnd_toEndOf="@id/main_screen"
         app:layout_constraintStart_toEndOf="@+id/button0"
         app:layout_constraintTop_toBottomOf="@+id/buttonPlus" />
@@ -219,6 +224,7 @@
         android:layout_height="@dimen/button_height"
         android:text="@string/key_0"
         android:textSize="@dimen/button_text_size"
+        android:onClick="press"
         app:layout_constraintEnd_toEndOf="@+id/button3"
         app:layout_constraintStart_toStartOf="@id/main_screen"
         app:layout_constraintTop_toBottomOf="@+id/button1" />

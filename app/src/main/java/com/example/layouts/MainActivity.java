@@ -1,11 +1,13 @@
 package com.example.layouts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,22 +15,21 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private static final String KEY_MAIN_SCREEN = "mainScreen";
     private static final String KEY_MEMORY_SCREEN = "memoryScreen";
     public static final String MY_PREFERENCES = "nightModePreferences";
     private static final String KEY_NIGHT_MODE = "nightMode";
+    private static final String KEY_EQUALITY = "equality";
     SharedPreferences sharedPreferences;
+
 
 
     private TextView mainScreen;
     private TextView memoryScreen;
     private Calculator calculator;
     SwitchCompat changeTheme;
-
-    TextView textView;
-    Button buttonAC, buttonC, buttonDividee, buttonMultiply, buttonPlus, buttonMinus, buttonEqual, button1, button2, button3, button4, button5, button6, button7, button8, button9, button0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         changeTheme = findViewById(R.id.change_theme);
         mainScreen = findViewById(R.id.main_screen);
         memoryScreen = findViewById(R.id.memory_screen);
+
+        calculator = new Calculator(mainScreen, memoryScreen);
 
         checkNightModeActivated();
 
@@ -72,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainScreen = findViewById(R.id.main_screen);
         memoryScreen = findViewById(R.id.memory_screen);
         calculator = new Calculator(mainScreen, memoryScreen);
-        initViews();
     }
 
     @Override
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onSaveInstanceState(outState);
         outState.putString(KEY_MAIN_SCREEN, mainScreen.getText().toString());
         outState.putString(KEY_MEMORY_SCREEN, memoryScreen.getText().toString());
+        outState.putString(KEY_EQUALITY, calculator.getEquality());
     }
 
     @Override
@@ -87,94 +90,63 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onRestoreInstanceState(savedInstanceState);
         mainScreen.setText(savedInstanceState.getString(KEY_MAIN_SCREEN));
         memoryScreen.setText(savedInstanceState.getString(KEY_MEMORY_SCREEN));
+        calculator.setEquality(savedInstanceState.getString(KEY_EQUALITY));
     }
 
-    private void initViews() {
-        initButtons();
-        initTextViews();
-    }
-
-    private void initButtons() {
-        buttonAC = (Button) findViewById(R.id.buttonAC);
-        buttonC = (Button) findViewById(R.id.buttonC);
-        buttonDividee = (Button) findViewById(R.id.buttonDividee);
-        buttonMultiply = (Button) findViewById(R.id.buttonMultiply);
-        buttonPlus = (Button) findViewById(R.id.buttonPlus);
-        buttonMinus = (Button) findViewById(R.id.buttonMinus);
-        buttonEqual = (Button) findViewById(R.id.buttonEqual);
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        button5 = (Button) findViewById(R.id.button5);
-        button6 = (Button) findViewById(R.id.button6);
-        button7 = (Button) findViewById(R.id.button7);
-        button8 = (Button) findViewById(R.id.button8);
-        button9 = (Button) findViewById(R.id.button9);
-        button0 = (Button) findViewById(R.id.button0);
-
-        Button[] buttons = {buttonAC, buttonC, buttonDividee, buttonMultiply, buttonPlus, buttonMinus, buttonEqual, button1, button2, button3, button4, button5, button6, button7, button8, button9, button0};
-        for (Button button : buttons) {
-            button.setOnClickListener(this);
-        }
-    }
-
-    private void initTextViews() {
-        textView = (TextView) findViewById(R.id.main_screen);
-    }
 
     @Override
-    public void onClick(View view) {
-        if (view.getId() == R.id.button0) {
-            textView.setText("0");
-        }
-        if (view.getId() == R.id.button1) {
-            textView.setText("1");
-        }
-        if (view.getId() == R.id.button2) {
-            textView.setText("2");
-        }
-        if (view.getId() == R.id.button3) {
-            textView.setText("3");
-        }
-        if (view.getId() == R.id.button4) {
-            textView.setText("4");
-        }
-        if (view.getId() == R.id.button5) {
-            textView.setText("5");
-        }
-        if (view.getId() == R.id.button6) {
-            textView.setText("6");
-        }
-        if (view.getId() == R.id.button7) {
-            textView.setText("7");
-        }
-        if (view.getId() == R.id.button8) {
-            textView.setText("8");
-        }
-        if (view.getId() == R.id.button9) {
-            textView.setText("9");
-        }
-        if (view.getId() == R.id.buttonAC) {
-            textView.setText("0");
-        }
-        if (view.getId() == R.id.buttonC) {
-            textView.setText("0");
-        }
-        if (view.getId() == R.id.buttonPlus) {
-            textView.setText("+");
-        }
-        if (view.getId() == R.id.buttonMinus) {
-            textView.setText("-");
-        }
-        if (view.getId() == R.id.buttonDividee) {
-            textView.setText("/");
-        }
-        if (view.getId() == R.id.buttonMultiply) {
-            textView.setText("*");
-        }
-        if (view.getId() == R.id.buttonEqual) {
-            textView.setText("=");
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode != RESULT_CANCELED) {
+            super.onActivityResult(requestCode, resultCode, data);
+        } else if (resultCode == RESULT_OK) {
+            saveNightModeState(data.getExtras().getBoolean(KEY_NIGHT_MODE));
+            recreate();
         }
     }
+    public void press(View view) {
+        String input = mainScreen.getText().toString();
+        Button button = (Button) view;
+        switch (button.getId()) {
+            case R.id.button1:
+            case R.id.button2:
+            case R.id.button3:
+            case R.id.button4:
+            case R.id.button5:
+            case R.id.button6:
+            case R.id.button7:
+            case R.id.button8:
+            case R.id.button9:
+            case R.id.button0: {
+                String last = !calculator.getEquality().isEmpty() ? calculator.getEquality().substring(calculator.getEquality().length() - 3) : "";
+                if (last.contains("=")) {
+                    Toast.makeText(this, "Enter operator", Toast.LENGTH_LONG).show();
+                    break;
+                }
+                mainScreen.setText(String.format("%s%s", input, button.getText().toString()));
+                break;
+            }
+            case R.id.buttonPlus:
+            case R.id.buttonMinus:
+            case R.id.buttonDividee:
+            case R.id.buttonMultiply: {
+                if (!calculator.getEquality().isEmpty() || !input.isEmpty()) {
+                    calculator.addToEquality(button.getText().toString());
+                }
+                break;
+            }
+            case R.id.buttonEqual: {
+                if (!calculator.getEquality().isEmpty() || !input.isEmpty()) {
+                    calculator.addToEquality(button.getText().toString());
+                    mainScreen.setText(calculator.calculate());
+                }
+            }
+        }
+    }
+
+    public void clear(View view) {
+        memoryScreen.setText("");
+        mainScreen.setText("");
+        calculator.setEquality("");
+    }
 }
+
