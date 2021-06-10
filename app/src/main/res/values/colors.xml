@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    //Цвета для светлой темы
+    <color name="color_numbers">#A882DD</color>
+    <color name="color_actions">#0E103D</color>
+    <color name="color_AC">#982649</color>
+    <color name="color_C">#D17D97</color>
+    <color name="color_equal">#EF8354</color>
+    <color name="background_light">#BFDBF7</color>
+
+    //Цвета для тёмной темы
+    <color name="color_numbers_dark">#243B4A</color>
+    <color name="color_actions_dark">#1B998B</color>
+    <color name="color_AC_dark">#931621</color>
+    <color name="color_C_dark">#AE414B</color>
+    <color name="color_equal_dark">#DB93B0</color>
+    <color name="background_dark">#8075FF</color>
+
+
+    <color name="white">#FFFFFF</color>
+
 </resources>
